@@ -1,0 +1,415 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+/* Login Page Styles */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.login-form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+}
+
+.login-form form label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.login-form form input[type="text"],
+.login-form form input[type="password"] {
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.login-form form input[type="text"]:focus,
+.login-form form input[type="password"]:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.login-form form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form form button:hover {
+  background-color: #0056b3;
+}
+
+/* Main Application Page Styles */
+.app-container {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+}
+
+.profile-section p {
+  margin: 0;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input[type="text"] {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.search-bar button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #555;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #333;
+}
+
+.saved-date {
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+.logout-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #555;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #333;
+}
+
+/* Project List Styles */
+.project-list {
+  margin-bottom: 20px;
+}
+
+.project-select {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.project-select:focus {
+  outline: none;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Project Details Styles */
+.project-details {
+  margin-bottom: 20px;
+}
+
+.project-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.project-table th,
+.project-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Calendar Container 1 Styles */
+.calendar-container1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.month-select label {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.month-select select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.month-select select:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.fetch-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.fetch-button:hover {
+  background-color: #0056b3;
+}
+
+/* Data Table Styles */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Tasks Styles */
+.tasks {
+  margin-bottom: 20px;
+}
+
+.tasks-dropdown {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.tasks-dropdown:focus {
+  outline: none;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Task List Styles */
+.task-list-container {
+  margin-bottom: 20px;
+}
+
+.task-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.task-list th,
+.task-list td {
+ padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.task-list th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.task-list td {
+  background-color: #fff;
+}
+
+.task-list-container h3 {
+  margin: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.task-list-container .input-date {
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.task-list-container .input-date:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.task-list-container .task-buttons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.task-list-container .task-buttons button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.task-list-container .task-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.task-form-container {
+  margin-bottom: 20px;
+}
+
+.task-form-container h3 {
+  margin: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.task-form-container form label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.task-form-container form input[type="text"] {
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.task-form-container form input[type="text"]:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.task-form-container form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #6c757d;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.task-form-container form button:hover {
+  background-color: #4e555a;
+}
+
+/* Additional Styles */
+.app-container {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  .navbar {
+    flex-wrap: wrap;
+  }
+  .profile-section {
+    margin-bottom: 10px;
+  }
+  .search-bar {
+    margin-left: auto;
+  }
+  .search-bar input[type="text"] {
+    width: 150px;
+  }
+  .saved-date {
+    display: none;
+  }
+  .logout-button {
+    margin-left: auto;
+  }
+  .calendar-container1 {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .month-select {
+    margin-bottom: 10px;
+  }
+}

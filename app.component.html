@@ -1,0 +1,198 @@
+<!-- Login Page -->
+<div class="login-container" *ngIf="!currentUserRole">
+  <div class="login-form">
+    <h2>Login</h2>
+    <form (submit)="login(username.value, password.value)">
+      <label>
+        Username:
+        <input type="text" #username required>
+      </label>
+      <label>
+        Password:
+        <input type="password" #password required>
+      </label>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- Main Application Page -->
+<div class="app-container" *ngIf="currentUserRole">
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="profile-section">
+      <!-- Display user profile details here -->
+      <p>{{ currentUserRole }}</p>
+    </div>
+    <div class="search-bar">
+      <!-- Add your search bar code here -->
+      <input type="text" placeholder="Search...">
+      <button>Search</button>
+    </div>
+    <div class="saved-date">
+      <!-- Display the saved date here -->
+      <p>{{ selectedDate | date }}</p>
+    </div>
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </div>
+
+  <!-- Calendar and other sections -->
+
+  <div class="container">
+    <div class="project-list">
+      <h2>Projects</h2>
+      <select class="project-select" #projectSelect (change)="updateClientAndHours(projectSelect.value)">
+        <option value="" disabled selected>Select a project</option>
+        <option *ngFor="let project of projects" [value]="project.id">{{ project.project_name }}</option>
+      </select>
+    </div>
+
+    <div class="project-details" *ngIf="selectedProject">
+      <table class="project-table">
+        <tr>
+          <th>Project</th>
+          <th>Client</th>
+          <th>EstimatedHours</th>
+          <th>Remaining Hours</th>
+        </tr>
+        <tr>
+          <td>{{ selectedProject.project_name }}</td>
+          <td>{{ selectedProject.client_name }}</td>
+          <td>{{ selectedProject.hours_worked }}</td>
+          <td>{{ selectedProject.remaining_time }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <br><br>
+
+  <div class="container">
+    <div class="calendar-container1">
+      <div class="month-select">
+        <label for="monthSelect">Select Month:</label>
+        <select id="monthSelect" [(ngModel)]="selectedMonth">
+          <option value="" disabled selected>Select a Month</option>
+          <option *ngFor="let month of months" [ngValue]="month">{{ month.name }}</option>
+        </select>
+      </div>
+      <button type="submit" (click)="fetchDataByMonth()">Fetch Data</button>
+    </div>
+  </div>
+
+  <div *ngIf="weekData.length && currentUserRole !== 'client'">
+    <h2>Month Details</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Week Number</th>
+          <th>People</th>
+          <th>Tasks</th>
+          <th>Hours Worked</th>
+          <th>name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of weekData; let i = index">
+          <ng-container *ngIf="i === 0 || data.week_number !== weekData[i - 1].week_number">
+            <td [attr.rowspan]="getRowSpan(data.week_number)">{{ data.week_number }}</td>
+          </ng-container>
+          <td>{{ data.people }}</td>
+          <td>{{ data.task }}</td>
+          <td>{{ data.hours }}</td>
+          <td>{{data.project_name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div><br><br><br>
+
+  <div class="tasks">
+    <select class="tasks-dropdown" [(ngModel)]="selectedTask" name="selectedTask">
+      <option value="" disabled>Tasks</option>
+      <option *ngFor="let task of listtasks" [ngValue]="task">
+        {{ task.project_name }} - {{ task.description }}
+      </option>
+    </select>
+  </div><br><br>
+<!-- Tasks List -->
+<div class="task-list-container">
+  <h3 style="text-align: center;">List of tasks</h3>
+  <table class="task-list">
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Assigned To</th>
+        <th>Status</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Hours</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.name }}</td>
+        <td>{{ task.assignedTo }}</td>
+        <td>{{ task.status }}</td>
+        <td>
+          <input type="date" class="input-date" [(ngModel)]="task.startDate" (change)="saveTasks()">
+        </td>
+        <td>
+          <input type="date" class="input-date" [(ngModel)]="task.endDate" (change)="saveTasks()">
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="task.hours" name="hours" required>
+        </td>
+        <td>
+          <!-- Actions Buttons based on Role -->
+          <button type="submit" *ngIf="currentUserRole === 'admin' || currentUserRole === 'user'" (click)="editTask(task)">Edit</button>
+          <button type="submit" *ngIf="currentUserRole === 'admin' || currentUserRole === 'user'" (click)="deleteTask(task)">Delete</button>
+          <button type="submit" *ngIf="currentUserRole === 'client'" disabled>Restricted</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="currentUserRole === 'admin' || currentUserRole === 'user'">
+  <div class="task-form-container">
+    <h3>Edit Task</h3>
+    <form (ngSubmit)="updateTask()">
+      <label>
+        Task Name:
+        <input type="text" [(ngModel)]="editedTask.name" name="name" required>
+      </label>
+      <label>
+        Assigned To:
+        <input type="text" [(ngModel)]="editedTask.assignedTo" name="assignedTo" required>
+      </label>
+      <label>
+        Status:
+        <input type="text" [(ngModel)]="editedTask.status" name="status" required>
+      </label>
+      <button type="submit">Update Task</button>
+    </form>
+  </div>
+</div>
+
+<!-- Add Task Form (Admin) -->
+<div class="task-form-container" *ngIf="currentUserRole === 'admin' || currentUserRole === 'user'">
+  <h3>Add Task</h3>
+  <form (ngSubmit)="addTask()">
+    <label>
+      Task Name:
+      <input type="text" [(ngModel)]="newTask.name" name="name" required>
+    </label>
+    <label>
+      Assigned To:
+      <input type="text" [(ngModel)]="newTask.assignedTo" name="assignedTo" required>
+    </label>
+    <label>
+      Status:
+      <input type="text" [(ngModel)]="newTask.status" name="status" required>
+    </label>
+    <button type="submit">Add Task</button>
+  </form>
+</div>
+
+
+</div>
